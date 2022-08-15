@@ -19,6 +19,9 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="K4p-Nk-QFG">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="LE3-1M-UFs"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -30,7 +33,17 @@
                             <constraint firstItem="K4p-Nk-QFG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="v2f-Pd-8wV"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="pgQ-u4-enf"/>
+                    <navigationItem key="navigationItem" id="pgQ-u4-enf">
+                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="TBf-Id-e9J">
+                            <connections>
+                                <action selector="addButton:" destination="BYZ-38-t0r" id="qyg-Gs-af0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addButton" destination="TBf-Id-e9J" id="m4e-MD-fIv"/>
+                        <outlet property="tableView" destination="K4p-Nk-QFG" id="Luo-SE-YLV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -56,6 +69,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
