@@ -19,6 +19,11 @@ class ViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetch()
+    }
+    
     @IBOutlet var addButton: UIBarButtonItem!
     
     @IBOutlet var tableView: UITableView!
@@ -36,6 +41,7 @@ class ViewController: UIViewController {
                   let nameToSave = textField.text else {
                 return
             }
+            save(name: nameToSave)
             self.tableView.reloadData()
         }
         
@@ -67,6 +73,20 @@ class ViewController: UIViewController {
           } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
           }
+    }
+    
+    func fetch() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Person")
+        
+        do {
+            people = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
     }
 }
 
